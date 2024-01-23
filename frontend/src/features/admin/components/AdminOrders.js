@@ -48,7 +48,7 @@ function AdminOrders() {
 
   const handleSort = (sortOption) => {
     const sort = { _sort: sortOption.sort, _order: sortOption.order };
-    console.log({ sort });
+    // console.log({ sort });
     setSort(sort);
   };
 
@@ -164,7 +164,7 @@ function AdminOrders() {
                     key={order.id}
                     className="border-b border-gray-200 hover:bg-gray-100"
                   >
-                  {console.log("order : ",order)}
+                  {/* {console.log("order : ",order)} */}
                     <td className="py-3 px-0 text-left whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="mr-2"></div>
@@ -175,7 +175,7 @@ function AdminOrders() {
                       {order.items.map((item, index) => (
                         <div key={index} className="flex items-center">
                           <div className="mr-2">
-                          {console.log("item : ",item)}
+                          {/* {console.log("item : ",item)} */}
                             <img
                               className="w-6 h-6 rounded-full"
                               src={item.product.thumbnail}

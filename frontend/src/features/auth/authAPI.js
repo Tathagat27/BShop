@@ -63,7 +63,7 @@ export function signOut(userId) {
         reject(error);
       }
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       reject( error );
     }
   });

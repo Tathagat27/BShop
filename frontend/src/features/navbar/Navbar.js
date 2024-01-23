@@ -103,7 +103,7 @@ function NavBar({ children }) {
                               src={userImage}
                               alt=""
                             />
-                            {console.log(userInfo)}
+                            {/* {console.log(userInfo)} */}
                           </Menu.Button>
                         </div>
                         <Transition

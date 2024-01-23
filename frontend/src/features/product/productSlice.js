@@ -58,7 +58,7 @@ export const createProductAsync = createAsyncThunk(
   'product/create',
   async (product) => {
     const response = await createProduct(product);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   }
 );

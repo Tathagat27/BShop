@@ -116,7 +116,7 @@ function ProductForm() {
       <form
         noValidate
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          // console.log(data);
           const product = { ...data };
           product.images = [
             product.image1,
@@ -148,7 +148,7 @@ function ProductForm() {
           product.price = +product.price;
           product.stock = +product.stock;
           product.discountPercentage = +product.discountPercentage;
-          console.log(product);
+          // console.log(product);
           if (params.id) {
             product.id = params.id;
             product.rating = selectedProduct.rating || 0;
@@ -650,7 +650,7 @@ function ProductForm() {
       <form
         noValidate
         onSubmit={handleSubmit2((data) => {
-            console.log(data.jsonProduct);
+            // console.log(data.jsonProduct);
             if(data.jsonProduct[0]==='[' && data.jsonProduct[data.jsonProduct.length-1]===']'){
               let productArr = JSON.parse(data.jsonProduct);
               alert.success('Wait...Products are being created...')

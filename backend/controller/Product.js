@@ -24,7 +24,7 @@ exports.fetchAllProducts = async (req, res) => {
   let query = Product.find(condition);
   let totalProductsQuery = Product.find(condition);
 
-  console.log("query:",req.query);
+  // console.log("query:",req.query);
 
   if (req.query.category) {
     query = query.find({ category: {$in:req.query.category.split(',')} });
@@ -41,7 +41,7 @@ exports.fetchAllProducts = async (req, res) => {
   }
 
   const totalDocs = await totalProductsQuery.count().exec();
-  console.log({ totalDocs });
+  // console.log({ totalDocs });
 
   if (req.query._page && req.query._limit) {
     const pageSize = req.query._limit;
