@@ -22,6 +22,13 @@ function ProductForm() {
     reset,
     formState: { errors },
   } = useForm();
+
+  const {
+    register: register2,
+    handleSubmit: handleSubmit2,
+    reset: reset2,
+    formState: { errors: errors2 },
+  } = useForm();
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const dispatch = useDispatch();
@@ -612,6 +619,83 @@ function ProductForm() {
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Cancel
+          </button>
+
+          {selectedProduct && !selectedProduct.deleted && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenModal(true);
+              }}
+              className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Delete
+            </button>
+          )}
+
+          <button
+            type="submit"
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+
+      <form
+        noValidate
+        onSubmit={handleSubmit2((data) => {
+            console.log(data.jsonProduct);
+            if(data.jsonProduct[0]==='[' && data.jsonProduct[data.jsonProduct.length-1]===']'){
+              let productArr = JSON.parse(data.jsonProduct);
+              alert.success('Wait...Products are being created...')
+              for(let i=0;i<data.jsonProduct.length; i++){
+                delete productArr[i].id;
+                dispatch(createProductAsync(productArr[i]));
+              } 
+              alert.success('Products Created');
+            }
+            else if(data.jsonProduct[0]==='{' && data.jsonProduct[data.jsonProduct.length-1]==='}'){
+              let product = JSON.parse(data.jsonProduct); 
+              delete product.id;
+              dispatch(createProductAsync(product));
+              alert.success('Products Created');
+            }
+            else{
+              alert.error('Syntax Error');
+            }
+            // dispatch(createProductAsync(data));
+            // alert.success('Product Created');
+            reset2();
+        })}>
+      <div className="border-b border-gray-900/10 pb-12"></div>
+              <div className="flex justify-center">OR</div>
+              <div className="col-span-full">
+                <label
+                  htmlFor="jsonProduct"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Add Product in JSON format
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="jsonProduct"
+                    {...register2('jsonProduct', {
+                      required: 'jsonProduct is required',
+                    })}
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue={''}
+                    placeholder='{"key": "value"}'
+                  />
+                </div>
+              </div>
+              <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"

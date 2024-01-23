@@ -24,7 +24,7 @@ exports.fetchAllProducts = async (req, res) => {
   let query = Product.find(condition);
   let totalProductsQuery = Product.find(condition);
 
-  console.log(req.query.category);
+  console.log("query:",req.query);
 
   if (req.query.category) {
     query = query.find({ category: {$in:req.query.category.split(',')} });
