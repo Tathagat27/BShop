@@ -61,7 +61,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:3000/order-success/${currentOrder.id}`,
+        return_url: `https://b-shop-dr04cz2ss-tathagat27.vercel.app/order-success/${currentOrder.id}`,
       },
     });
 
